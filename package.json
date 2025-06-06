@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "start:api": "node app/api/sensors/server.js",    
-    "start:cron": "node sensor-data-gen/server.js",    
+    "start:cron": "node sensor-data-generation/server.js",    
     "lint": "next lint"
   },
   "dependencies": {
