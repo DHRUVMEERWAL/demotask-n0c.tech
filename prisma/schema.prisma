@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String      @id @default(uuid())
+  name           String
+  email          String      @unique
+  password       String
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  sensorReadings RawSensorData[]
+  processedData  ProcessedSensorData[]
+}
+
+model RawSensorData {
+  id          String      @id @default(uuid())
+  userId      String?
+  timestamp   DateTime    @default(now())
+  temperature Float
+  pressure    Float
+
+  user        User?       @relation(fields: [userId], references: [id])
+}
+
+model ProcessedSensorData {
+  id             String      @id @default(uuid())
+  userId         String?
+  intervalStart  DateTime
+  intervalEnd    DateTime
+  avgTemperature Float
+  avgPressure    Float
+
+  user           User?       @relation(fields: [userId], references: [id])
+}
