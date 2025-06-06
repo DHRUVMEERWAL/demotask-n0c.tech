@@ -4,7 +4,7 @@ const cors = require("cors");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT1 || 3001;
 
 // Enable CORS for your frontend origin
 app.use(cors());

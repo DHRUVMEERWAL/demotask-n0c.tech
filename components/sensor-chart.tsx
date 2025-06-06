@@ -52,7 +52,7 @@ export function SensorChart({ title, type, timeRange }: SensorChartProps) {
     async function fetchSensorData() {
       setLoading(true)
       try {
-        const res = await fetch(`http://localhost:3001/api/sensors?type=${type}&range=${timeRange}`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sensors?type=${type}&range=${timeRange}`)
         if (!res.ok) throw new Error("Failed to fetch sensor data")
         const json = await res.json()
         setLabels(json.labels)
