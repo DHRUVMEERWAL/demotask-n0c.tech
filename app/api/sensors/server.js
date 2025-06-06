@@ -1,4 +1,5 @@
-require("dotenv").config();
+require('dotenv').config({ path: '.env.production' });
+
 const express = require("express");
 const cors = require("cors"); 
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");

@@ -47,12 +47,12 @@ export function SensorChart({ title, type, timeRange }: SensorChartProps) {
   const [labels, setLabels] = useState<string[]>([])
   const [data, setData] = useState<number[]>([])
   const [loading, setLoading] = useState(true)
-
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
     async function fetchSensorData() {
       setLoading(true)
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sensors?type=${type}&range=${timeRange}`)
+        const res = await fetch(`${baseUrl}/api/sensors?type=${type}&range=${timeRange}`)
         if (!res.ok) throw new Error("Failed to fetch sensor data")
         const json = await res.json()
         setLabels(json.labels)
